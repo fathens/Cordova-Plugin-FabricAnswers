@@ -7,15 +7,15 @@ extension Dictionary {
     func getString(_ key: Key) -> String? {
         return self[key] as? String
     }
-    
+
     func getDouble(_ key: Key) -> Double? {
         return self[key].flatMap { $0 as AnyObject }.flatMap { $0.doubleValue }
     }
-    
+
     func getDecimal(_ key: Key) -> NSDecimalNumber? {
         return getDouble(key).map { NSDecimalNumber(value: $0 as Double) }
     }
-    
+
     func getBool(_ key: Key) -> Int? {
         return self[key].flatMap { $0 as? Bool }.map { $0 ? 1 : 0 }
     }
@@ -26,11 +26,11 @@ class FabricAnswers: CDVPlugin {
     fileprivate func frame(_ command: CDVInvokedUrlCommand, _ proc: (Dictionary<String, AnyObject>?, Dictionary<String, AnyObject>?) -> Void) {
         let dict = command.arguments.first.flatMap { $0 as? Dictionary<String, AnyObject> }
         let custom = dict?["custom"] as? Dictionary<String, AnyObject>
-        
+
         proc(dict, custom)
         commandDelegate!.send(CDVPluginResult(status: CDVCommandStatus_OK), callbackId: command.callbackId)
     }
-    
+
     func eventPurchase(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let price = dict?.getDecimal("itemPrice")
@@ -42,7 +42,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logPurchase(withPrice: price, currency: currency, success: success as NSNumber?, itemName: name, itemType: type, itemId: id, customAttributes: custom)
         }
     }
-    
+
     func eventAddToCart(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let price = dict?.getDecimal("itemPrice")
@@ -53,7 +53,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logAddToCart(withPrice: price, currency: currency, itemName: name, itemType: type, itemId: id, customAttributes: custom)
         }
     }
-    
+
     func eventStartCheckout(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let price = dict?.getDecimal("totalPrice")
@@ -62,7 +62,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logStartCheckout(withPrice: price, currency: currency, itemCount: count as NSNumber?, customAttributes: custom)
         }
     }
-    
+
     func eventContentView(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("contentName")
@@ -71,14 +71,14 @@ class FabricAnswers: CDVPlugin {
             Answers.logContentView(withName: name, contentType: type, contentId: id, customAttributes: custom)
         }
     }
-    
+
     func eventSearch(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let query = dict?.getString("query")
             Answers.logSearch(withQuery: query, customAttributes: custom)
         }
     }
-    
+
     func eventShare(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
@@ -88,7 +88,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logShare(withMethod: method, contentName: name, contentType: type, contentId: id, customAttributes: custom)
         }
     }
-    
+
     func eventRating(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let rating = dict?.getDouble("rating")
@@ -98,7 +98,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logRating(rating as NSNumber?, contentName: name, contentType: type, contentId: id, customAttributes: custom)
         }
     }
-    
+
     func eventSignUp(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
@@ -106,7 +106,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logSignUp(withMethod: method, success: success as NSNumber?, customAttributes: custom)
         }
     }
-    
+
     func eventLogin(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
@@ -114,21 +114,21 @@ class FabricAnswers: CDVPlugin {
             Answers.logLogin(withMethod: method, success: success as NSNumber?, customAttributes: custom)
         }
     }
-    
+
     func eventInvite(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
             Answers.logInvite(withMethod: method, customAttributes: custom)
         }
     }
-    
+
     func eventLevelStart(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("levelName")
             Answers.logLevelStart(name, customAttributes: custom)
         }
     }
-    
+
     func eventLevelEnd(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("levelName")
@@ -137,7 +137,7 @@ class FabricAnswers: CDVPlugin {
             Answers.logLevelEnd(name, score: score as NSNumber?, success: success as NSNumber?, customAttributes: custom)
         }
     }
-    
+
     func eventCustom(_ command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("name")
