@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="org.fathens.cordova.plugin.fabric.Answers" version="1.5.1" xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Answers</name>
+    <description>Cordova Plugin for Fabric/Answers</description>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova-android" version=">=4.1.0" />
+        <engine name="cordova-ios" version=">=3.9.0" />
+    </engines>
+
+    <js-module name="FabricAnswersPlugin" src="www/answers.js">
+        <clobbers target="plugin.Fabric.Answers"/>
+    </js-module>
+
+    <dependency id="org.fathens.cordova.plugin.Fabric" url="https://github.com/fathens/Cordova-Plugin-Fabric.git" commit="master" />
+
+    <platform name="android">
+        <dependency id="org.fathens.cordova.plugin.lang.Kotlin" url="https://github.com/fathens/Cordova-Plugin-Kotlin.git" commit="master" />
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="FabricAnswersPlugin">
+                <param name="android-package" value="org.fathens.cordova.plugin.fabric.FabricAnswers"/>
+            </feature>
+        </config-file>
+
+        <source-file src="platforms/android/src/main/kotlin/FabricAnswers.kt" target-dir="kotlin/org.fathens.cordova.plugin.fabric"/>
+
+        <fabric>
+            <instance>new com.crashlytics.android.answers.Answers()</instance>
+        </fabric>
+
+        <framework src="platforms/android/plugin.gradle" custom="true" type="gradleReference"/>
+    </platform>
+
+    <platform name="ios">
+        <dependency id="org.fathens.cordova.plugin.lang.Swift" url="https://github.com/fathens/Cordova-Plugin-Swift.git" commit="master" />
+
+        <config-file parent="/*" target="config.xml">
+            <feature name="FabricAnswersPlugin">
+                <param name="ios-package" value="FabricAnswers"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <podfile swift_version="3.0">
+            <pod name="Answers" />
+        </podfile>
+
+        <source-file src="platforms/ios/src/FabricAnswers.swift"/>
+    </platform>
+</plugin>
