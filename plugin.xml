@@ -27,7 +27,8 @@
         <source-file src="platforms/android/src/main/kotlin/FabricAnswers.kt" target-dir="kotlin/org.fathens.cordova.plugin.fabric"/>
 
         <fabric>
-            <instance>new com.crashlytics.android.answers.Answers()</instance>
+            <import>com.crashlytics.android.answers.Answers</import>
+            <instance>new Answers()</instance>
         </fabric>
 
         <framework src="platforms/android/plugin.gradle" custom="true" type="gradleReference"/>
@@ -43,10 +44,15 @@
             </feature>
         </config-file>
 
+        <source-file src="platforms/ios/src/FabricAnswers.swift"/>
+
         <podfile swift_version="3.0">
             <pod name="Answers" />
         </podfile>
 
-        <source-file src="platforms/ios/src/FabricAnswers.swift"/>
+        <fabric>
+            <import>Answers</import>
+            <instance>Answers.self</instance>
+        </fabric>
     </platform>
 </plugin>
