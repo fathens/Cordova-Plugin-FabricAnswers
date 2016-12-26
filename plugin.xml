@@ -28,7 +28,7 @@
 
         <fabric>
             <import>com.crashlytics.android.answers.Answers</import>
-            <instance>new Answers()</instance>
+            <instance>Answers()</instance>
         </fabric>
 
         <framework src="platforms/android/plugin.gradle" custom="true" type="gradleReference"/>
