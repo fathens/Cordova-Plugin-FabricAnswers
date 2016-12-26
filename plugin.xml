@@ -13,11 +13,9 @@
         <clobbers target="plugin.Fabric.Answers"/>
     </js-module>
 
-    <dependency id="org.fathens.cordova.plugin.Fabric" url="https://github.com/fathens/Cordova-Plugin-Fabric.git" commit="master" />
+    <dependency id="org.fathens.cordova.plugin.fabric.Base" url="https://github.com/fathens/Cordova-Plugin-Fabric.git" commit="master" />
 
     <platform name="android">
-        <dependency id="org.fathens.cordova.plugin.lang.Kotlin" url="https://github.com/fathens/Cordova-Plugin-Kotlin.git" commit="master" />
-
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="FabricAnswersPlugin">
                 <param name="android-package" value="org.fathens.cordova.plugin.fabric.FabricAnswers"/>
@@ -27,26 +25,29 @@
         <source-file src="platforms/android/src/main/kotlin/FabricAnswers.kt" target-dir="kotlin/org.fathens.cordova.plugin.fabric"/>
 
         <fabric>
-            <instance>new com.crashlytics.android.answers.Answers()</instance>
+            <import>com.crashlytics.android.answers.Answers</import>
+            <instance>Answers()</instance>
         </fabric>
 
         <framework src="platforms/android/plugin.gradle" custom="true" type="gradleReference"/>
     </platform>
 
     <platform name="ios">
-        <dependency id="org.fathens.cordova.plugin.lang.Swift" url="https://github.com/fathens/Cordova-Plugin-Swift.git" commit="master" />
-
         <config-file parent="/*" target="config.xml">
             <feature name="FabricAnswersPlugin">
                 <param name="ios-package" value="FabricAnswers"/>
-                <param name="onload" value="true" />
             </feature>
         </config-file>
+
+        <source-file src="platforms/ios/src/FabricAnswers.swift"/>
 
         <podfile swift_version="3.0">
             <pod name="Answers" />
         </podfile>
 
-        <source-file src="platforms/ios/src/FabricAnswers.swift"/>
+        <fabric name="Answers">
+            <import>Answers</import>
+            <instance>Answers.self</instance>
+        </fabric>
     </platform>
 </plugin>
