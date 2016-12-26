@@ -33,11 +33,9 @@
     </platform>
 
     <platform name="ios">
-
         <config-file parent="/*" target="config.xml">
             <feature name="FabricAnswersPlugin">
                 <param name="ios-package" value="FabricAnswers"/>
-                <param name="onload" value="true" />
             </feature>
         </config-file>
 
@@ -47,7 +45,7 @@
             <pod name="Answers" />
         </podfile>
 
-        <fabric>
+        <fabric name="Answers">
             <import>Answers</import>
             <instance>Answers.self</instance>
         </fabric>
