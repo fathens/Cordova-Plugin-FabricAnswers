@@ -49,5 +49,7 @@
             <import>Answers</import>
             <instance>Answers.self</instance>
         </fabric>
+
+        <hook type="before_prepare" src="platforms/ios/hooks/before_prepare.rb"/>
     </platform>
 </plugin>
