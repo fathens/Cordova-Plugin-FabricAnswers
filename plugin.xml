@@ -46,7 +46,6 @@
         </podfile>
 
         <fabric name="Answers">
-            <import>Answers</import>
             <instance>Answers.self</instance>
         </fabric>
 
