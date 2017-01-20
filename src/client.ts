@@ -1,18 +1,4 @@
-interface Window {
-    plugin: Plugin;
-}
-
-interface Plugin {
-    Fabric: Fabric;
-}
-
-declare var plugin: Plugin;
-
-interface Fabric {
-    Answers: Answers;
-}
-
-interface Answers {
+export interface AnswersClient {
     eventLogin(params: {
         method?: string,
         success?: boolean,
