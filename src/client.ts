@@ -3,29 +3,29 @@ export interface AnswersClient {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventSignUp(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventInvite(params: {
         method?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventLevelStart(params: {
         levelName?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventPurchase(params: {
         itemPrice?: number,
@@ -35,7 +35,7 @@ export interface AnswersClient {
         itemId?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventAddToCart(params: {
         itemPrice?: number,
@@ -44,21 +44,21 @@ export interface AnswersClient {
         itemType?: string,
         itemId?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventStartCheckout(params: {
         totalPrice?: number,
         currency?: string,
         itemCount?: number,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventContentView(params: {
         contentName?: string,
         contentType?: string,
         contentId?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventShare(params: {
         method?: string,
@@ -66,7 +66,7 @@ export interface AnswersClient {
         contentType?: string,
         contentId?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventRating(params: {
         rating?: number,
@@ -74,10 +74,10 @@ export interface AnswersClient {
         contentType?: string,
         itemType?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventCustom(params: {
         name?: string,
         attributes?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 }
