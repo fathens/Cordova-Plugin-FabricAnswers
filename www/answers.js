@@ -1,10 +1,6 @@
 var cordova = require("cordova/exec");
 
-function exec(name, map) {
-	cordova(function() {}, function(error) {
-		alert("Error on " + name + "\n" + error);
-	}, "FabricAnswersPlugin", name, [map]);
-}
+var pluginName = "FabricAnswersPlugin";
 
 var names = [
 "eventPurchase",
@@ -24,9 +20,13 @@ var names = [
 
 var obj = {};
 
-names.forEach(function(name) {
-	obj[name] = function(map) { exec(name, map) }
+names.forEach(function(methodName) {
+    obj[methodName] = function() {
+        var args = Array.prototype.slice.call(arguments, 0);
+        return new Promise(function(resolve, reject) {
+            cordova(resolve, reject, pluginName, methodName, args);
+        });
+    };
 });
 
 module.exports = obj;
-
