@@ -27,6 +27,8 @@ def remove_answers(my_id, other_id)
     File.open(pluginxml, 'w') { |dst|
         xml.write dst
     }
+
+    FileUtils.rm_rf $PROJECT_DIR/'Pods'/'Answers'
 end
 
 remove_answers 'org.fathens.cordova.plugin.fabric.answers', 'org.fathens.cordova.plugin.fabric.crashlytics'
