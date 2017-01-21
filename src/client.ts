@@ -1,45 +1,31 @@
-interface Window {
-    plugin: Plugin;
-}
-
-interface Plugin {
-    Fabric: Fabric;
-}
-
-declare var plugin: Plugin;
-
-interface Fabric {
-    Answers: Answers;
-}
-
-interface Answers {
+export interface AnswersClient {
     eventLogin(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventSignUp(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventInvite(params: {
         method?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventLevelStart(params: {
         levelName?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventPurchase(params: {
         itemPrice?: number,
@@ -49,7 +35,7 @@ interface Answers {
         itemId?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventAddToCart(params: {
         itemPrice?: number,
@@ -58,21 +44,21 @@ interface Answers {
         itemType?: string,
         itemId?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventStartCheckout(params: {
         totalPrice?: number,
         currency?: string,
         itemCount?: number,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventContentView(params: {
         contentName?: string,
         contentType?: string,
         contentId?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventShare(params: {
         method?: string,
@@ -80,7 +66,7 @@ interface Answers {
         contentType?: string,
         contentId?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventRating(params: {
         rating?: number,
@@ -88,10 +74,10 @@ interface Answers {
         contentType?: string,
         itemType?: string,
         custom?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 
     eventCustom(params: {
         name?: string,
         attributes?: { [key: string]: string; }
-    }): void;
+    }): Promise<void>;
 }

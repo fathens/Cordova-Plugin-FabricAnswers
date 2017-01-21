@@ -1,7 +1,4 @@
 import Foundation
-import Cordova
-import Fabric
-import Answers
 
 extension Dictionary {
     func getString(_ key: Key) -> String? {
