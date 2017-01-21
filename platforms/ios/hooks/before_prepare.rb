@@ -19,11 +19,9 @@ def remove_answers(my_id, other_id)
     puts "Modify #{pluginxml}"
     xml = File.open(pluginxml) {|src| REXML::Document.new src }
     xml.get_elements('//platform[@name="ios"]').each { |platform|
-        ['framework[@src="Answers"]'].each { |xpath|
-            platform.get_elements(xpath).each { |e|
-                puts "Deleting: #{e}"
-                e.parent.delete_element e
-            }
+        platform.get_elements('framework[@src="Answers"]').each { |e|
+            puts "Deleting: #{e}"
+            platform.delete_element e
         }
     }
     File.open(pluginxml, 'w') { |dst|
