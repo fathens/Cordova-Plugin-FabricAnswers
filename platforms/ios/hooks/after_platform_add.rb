@@ -12,23 +12,20 @@ end
 
 def remove_answers(my_id, other_id)
     return unless plugin_xml(other_id).exist?
+    return unless plugin_xml(my_id).exist?
 
-    pluginxml = plugin_xml my_id
-    return unless pluginxml.exist?
-
-    puts "Modify #{pluginxml}"
-    xml = File.open(pluginxml) {|src| REXML::Document.new src }
-    xml.get_elements('//platform[@name="ios"]').each { |platform|
-        platform.get_elements('framework[@src="Answers"]').each { |e|
-            puts "Deleting: #{e}"
-            platform.delete_element e
+    podfile = $PLATFORM_DIR/'Podfile'
+    puts "Modify #{podfile}"
+    lines = []
+    open(podfile, 'r') { |src|
+        src.each_line { |line|
+            lines.push line unless line.match(/^\s*pod\s+[\'\"]Answers[\'\"]/)
         }
     }
-    File.open(pluginxml, 'w') { |dst|
-        xml.write dst
+    open(podfile, 'w') { |dst|
+        dst.puts lines
     }
-
-    FileUtils.rm_rf $PROJECT_DIR/'Pods'/'Answers'
+    system 'pod install'
 end
 
 remove_answers 'org.fathens.cordova.plugin.fabric.answers', 'org.fathens.cordova.plugin.fabric.crashlytics'
