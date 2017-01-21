@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'pathname'
 require 'rexml/document'
 
 $PROJECT_DIR = Pathname.pwd.realpath
