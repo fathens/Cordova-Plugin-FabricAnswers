@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-fabric-answers",
+  "name": "@cordova-plugin/fabric-answers",
   "version": "1.2.1",
   "description": "Cordova Plugin for Fabric Answers",
   "main": "dist/index.js",
