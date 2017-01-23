@@ -10,21 +10,16 @@ function isDef(typedec) {
     return !_.isEqual(typedec, 'undefined');
 }
 const hasPlugin = isDef(typeof plugin) && isDef(typeof plugin.Fabric) && isDef(typeof plugin.Fabric.Answers);
+const client: AnswersClient = hasPlugin ? plugin.Fabric.Answers : null;
 
 export class Answers implements AnswersClient {
-    constructor() {
-        this.client = hasPlugin ? plugin.Fabric.Answers : null;
-    }
-
-    private client: AnswersClient;
-
     async eventLogin(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventLogin(params);
+        if (client) {
+            return client.eventLogin(params);
         } else {
             logger.info(() => `No Fabric here ! set event Login: ${params}`);
         }
@@ -35,8 +30,8 @@ export class Answers implements AnswersClient {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventSignUp(params);
+        if (client) {
+            return client.eventSignUp(params);
         } else {
             logger.info(() => `No Fabric here ! set event SignUp: ${params}`);
         }
@@ -46,8 +41,8 @@ export class Answers implements AnswersClient {
         method?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventInvite(params);
+        if (client) {
+            return client.eventInvite(params);
         } else {
             logger.info(() => `No Fabric here ! set event Invite: ${params}`);
         }
@@ -57,8 +52,8 @@ export class Answers implements AnswersClient {
         levelName?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventLevelStart(params);
+        if (client) {
+            return client.eventLevelStart(params);
         } else {
             logger.info(() => `No Fabric here ! set event LevelStart: ${params}`);
         }
@@ -69,8 +64,8 @@ export class Answers implements AnswersClient {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventLevelEnd(params);
+        if (client) {
+            return client.eventLevelEnd(params);
         } else {
             logger.info(() => `No Fabric here ! set event LevelEnd: ${params}`);
         }
@@ -85,8 +80,8 @@ export class Answers implements AnswersClient {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventPurchase(params);
+        if (client) {
+            return client.eventPurchase(params);
         } else {
             logger.info(() => `No Fabric here ! set event Purchase: ${params}`);
         }
@@ -100,8 +95,8 @@ export class Answers implements AnswersClient {
         itemId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventAddToCart(params);
+        if (client) {
+            return client.eventAddToCart(params);
         } else {
             logger.info(() => `No Fabric here ! set event AddToCart: ${params}`);
         }
@@ -113,8 +108,8 @@ export class Answers implements AnswersClient {
         itemCount?: number,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventStartCheckout(params);
+        if (client) {
+            return client.eventStartCheckout(params);
         } else {
             logger.info(() => `No Fabric here ! set event StartCheckout: ${params}`);
         }
@@ -126,8 +121,8 @@ export class Answers implements AnswersClient {
         contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventContentView(params);
+        if (client) {
+            return client.eventContentView(params);
         } else {
             logger.info(() => `No Fabric here ! set event ContentView: ${params}`);
         }
@@ -140,8 +135,8 @@ export class Answers implements AnswersClient {
         contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventShare(params);
+        if (client) {
+            return client.eventShare(params);
         } else {
             logger.info(() => `No Fabric here ! set event Share: ${params}`);
         }
@@ -154,8 +149,8 @@ export class Answers implements AnswersClient {
         itemType?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventRating(params);
+        if (client) {
+            return client.eventRating(params);
         } else {
             logger.info(() => `No Fabric here ! set event Rating: ${params}`);
         }
@@ -165,8 +160,8 @@ export class Answers implements AnswersClient {
         name?: string,
         attributes?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventCustom(params);
+        if (client) {
+            return client.eventCustom(params);
         } else {
             logger.info(() => `No Fabric here ! set event Custom: ${params}`);
         }
