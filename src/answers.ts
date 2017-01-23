@@ -12,8 +12,8 @@ function isDef(typedec) {
 const hasPlugin = isDef(typeof plugin) && isDef(typeof plugin.Fabric) && isDef(typeof plugin.Fabric.Answers);
 const client: AnswersClient = hasPlugin ? plugin.Fabric.Answers : null;
 
-export class Answers implements AnswersClient {
-    async eventLogin(params: {
+export class Answers {
+    static async eventLogin(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
@@ -25,7 +25,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventSignUp(params: {
+    static async eventSignUp(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
@@ -37,7 +37,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventInvite(params: {
+    static async eventInvite(params: {
         method?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
@@ -48,7 +48,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventLevelStart(params: {
+    static async eventLevelStart(params: {
         levelName?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
@@ -59,7 +59,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventLevelEnd(params: {
+    static async eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
@@ -71,7 +71,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventPurchase(params: {
+    static async eventPurchase(params: {
         itemPrice?: number,
         currency?: string,
         itemName?: string,
@@ -87,7 +87,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventAddToCart(params: {
+    static async eventAddToCart(params: {
         itemPrice?: number,
         currency?: string,
         itemName?: string,
@@ -102,7 +102,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventStartCheckout(params: {
+    static async eventStartCheckout(params: {
         totalPrice?: number,
         currency?: string,
         itemCount?: number,
@@ -115,7 +115,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventContentView(params: {
+    static async eventContentView(params: {
         contentName?: string,
         contentType?: string,
         contentId?: string,
@@ -128,7 +128,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventShare(params: {
+    static async eventShare(params: {
         method?: string,
         contentName?: string,
         contentType?: string,
@@ -142,7 +142,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventRating(params: {
+    static async eventRating(params: {
         rating?: number,
         contentName?: string,
         contentType?: string,
@@ -156,7 +156,7 @@ export class Answers implements AnswersClient {
         }
     }
 
-    async eventCustom(params: {
+    static async eventCustom(params: {
         name?: string,
         attributes?: { [key: string]: string; }
     }): Promise<void> {
