@@ -10,73 +10,68 @@ function isDef(typedec) {
     return !_.isEqual(typedec, 'undefined');
 }
 const hasPlugin = isDef(typeof plugin) && isDef(typeof plugin.Fabric) && isDef(typeof plugin.Fabric.Answers);
+const client: AnswersClient = hasPlugin ? plugin.Fabric.Answers : null;
 
-export class Answers implements AnswersClient {
-    constructor() {
-        this.client = hasPlugin ? plugin.Fabric.Answers : null;
-    }
-
-    private client: AnswersClient;
-
-    async eventLogin(params: {
+export class Answers {
+    static async eventLogin(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventLogin(params);
+        if (client) {
+            return client.eventLogin(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Login: ${params}`);
+            logger.info(() => `No Fabric! eventLogin: ${params}`);
         }
     }
 
-    async eventSignUp(params: {
+    static async eventSignUp(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventSignUp(params);
+        if (client) {
+            return client.eventSignUp(params);
         } else {
-            logger.info(() => `No Fabric here ! set event SignUp: ${params}`);
+            logger.info(() => `No Fabric! eventSignUp: ${params}`);
         }
     }
 
-    async eventInvite(params: {
+    static async eventInvite(params: {
         method?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventInvite(params);
+        if (client) {
+            return client.eventInvite(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Invite: ${params}`);
+            logger.info(() => `No Fabric! eventInvite: ${params}`);
         }
     }
 
-    async eventLevelStart(params: {
+    static async eventLevelStart(params: {
         levelName?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventLevelStart(params);
+        if (client) {
+            return client.eventLevelStart(params);
         } else {
-            logger.info(() => `No Fabric here ! set event LevelStart: ${params}`);
+            logger.info(() => `No Fabric! eventLevelStart: ${params}`);
         }
     }
 
-    async eventLevelEnd(params: {
+    static async eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventLevelEnd(params);
+        if (client) {
+            return client.eventLevelEnd(params);
         } else {
-            logger.info(() => `No Fabric here ! set event LevelEnd: ${params}`);
+            logger.info(() => `No Fabric! eventLevelEnd: ${params}`);
         }
     }
 
-    async eventPurchase(params: {
+    static async eventPurchase(params: {
         itemPrice?: number,
         currency?: string,
         itemName?: string,
@@ -85,14 +80,14 @@ export class Answers implements AnswersClient {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventPurchase(params);
+        if (client) {
+            return client.eventPurchase(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Purchase: ${params}`);
+            logger.info(() => `No Fabric! eventPurchase: ${params}`);
         }
     }
 
-    async eventAddToCart(params: {
+    static async eventAddToCart(params: {
         itemPrice?: number,
         currency?: string,
         itemName?: string,
@@ -100,75 +95,75 @@ export class Answers implements AnswersClient {
         itemId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventAddToCart(params);
+        if (client) {
+            return client.eventAddToCart(params);
         } else {
-            logger.info(() => `No Fabric here ! set event AddToCart: ${params}`);
+            logger.info(() => `No Fabric! eventAddToCart: ${params}`);
         }
     }
 
-    async eventStartCheckout(params: {
+    static async eventStartCheckout(params: {
         totalPrice?: number,
         currency?: string,
         itemCount?: number,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventStartCheckout(params);
+        if (client) {
+            return client.eventStartCheckout(params);
         } else {
-            logger.info(() => `No Fabric here ! set event StartCheckout: ${params}`);
+            logger.info(() => `No Fabric! eventStartCheckout: ${params}`);
         }
     }
 
-    async eventContentView(params: {
+    static async eventContentView(params: {
         contentName?: string,
         contentType?: string,
         contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventContentView(params);
+        if (client) {
+            return client.eventContentView(params);
         } else {
-            logger.info(() => `No Fabric here ! set event ContentView: ${params}`);
+            logger.info(() => `No Fabric! eventContentView: ${params}`);
         }
     }
 
-    async eventShare(params: {
+    static async eventShare(params: {
         method?: string,
         contentName?: string,
         contentType?: string,
         contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventShare(params);
+        if (client) {
+            return client.eventShare(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Share: ${params}`);
+            logger.info(() => `No Fabric! eventShare: ${params}`);
         }
     }
 
-    async eventRating(params: {
+    static async eventRating(params: {
         rating?: number,
         contentName?: string,
         contentType?: string,
         itemType?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventRating(params);
+        if (client) {
+            return client.eventRating(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Rating: ${params}`);
+            logger.info(() => `No Fabric! eventRating: ${params}`);
         }
     }
 
-    async eventCustom(params: {
+    static async eventCustom(params: {
         name?: string,
         attributes?: { [key: string]: string; }
     }): Promise<void> {
-        if (this.client) {
-            return this.client.eventCustom(params);
+        if (client) {
+            return client.eventCustom(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Custom: ${params}`);
+            logger.info(() => `No Fabric! eventCustom: ${params}`);
         }
     }
 }
