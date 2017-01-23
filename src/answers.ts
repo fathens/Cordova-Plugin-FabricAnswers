@@ -21,7 +21,7 @@ export class Answers {
         if (client) {
             return client.eventLogin(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Login: ${params}`);
+            logger.info(() => `No Fabric! eventLogin: ${params}`);
         }
     }
 
@@ -33,7 +33,7 @@ export class Answers {
         if (client) {
             return client.eventSignUp(params);
         } else {
-            logger.info(() => `No Fabric here ! set event SignUp: ${params}`);
+            logger.info(() => `No Fabric! eventSignUp: ${params}`);
         }
     }
 
@@ -44,7 +44,7 @@ export class Answers {
         if (client) {
             return client.eventInvite(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Invite: ${params}`);
+            logger.info(() => `No Fabric! eventInvite: ${params}`);
         }
     }
 
@@ -55,7 +55,7 @@ export class Answers {
         if (client) {
             return client.eventLevelStart(params);
         } else {
-            logger.info(() => `No Fabric here ! set event LevelStart: ${params}`);
+            logger.info(() => `No Fabric! eventLevelStart: ${params}`);
         }
     }
 
@@ -67,7 +67,7 @@ export class Answers {
         if (client) {
             return client.eventLevelEnd(params);
         } else {
-            logger.info(() => `No Fabric here ! set event LevelEnd: ${params}`);
+            logger.info(() => `No Fabric! eventLevelEnd: ${params}`);
         }
     }
 
@@ -83,7 +83,7 @@ export class Answers {
         if (client) {
             return client.eventPurchase(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Purchase: ${params}`);
+            logger.info(() => `No Fabric! eventPurchase: ${params}`);
         }
     }
 
@@ -98,7 +98,7 @@ export class Answers {
         if (client) {
             return client.eventAddToCart(params);
         } else {
-            logger.info(() => `No Fabric here ! set event AddToCart: ${params}`);
+            logger.info(() => `No Fabric! eventAddToCart: ${params}`);
         }
     }
 
@@ -111,7 +111,7 @@ export class Answers {
         if (client) {
             return client.eventStartCheckout(params);
         } else {
-            logger.info(() => `No Fabric here ! set event StartCheckout: ${params}`);
+            logger.info(() => `No Fabric! eventStartCheckout: ${params}`);
         }
     }
 
@@ -124,7 +124,7 @@ export class Answers {
         if (client) {
             return client.eventContentView(params);
         } else {
-            logger.info(() => `No Fabric here ! set event ContentView: ${params}`);
+            logger.info(() => `No Fabric! eventContentView: ${params}`);
         }
     }
 
@@ -138,7 +138,7 @@ export class Answers {
         if (client) {
             return client.eventShare(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Share: ${params}`);
+            logger.info(() => `No Fabric! eventShare: ${params}`);
         }
     }
 
@@ -152,7 +152,7 @@ export class Answers {
         if (client) {
             return client.eventRating(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Rating: ${params}`);
+            logger.info(() => `No Fabric! eventRating: ${params}`);
         }
     }
 
@@ -163,7 +163,7 @@ export class Answers {
         if (client) {
             return client.eventCustom(params);
         } else {
-            logger.info(() => `No Fabric here ! set event Custom: ${params}`);
+            logger.info(() => `No Fabric! eventCustom: ${params}`);
         }
     }
 }
