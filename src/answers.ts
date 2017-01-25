@@ -134,6 +134,17 @@ export class Answers {
         }
     }
 
+    static async eventSearch(params: {
+        query?: string,
+        custom?: { [key: string]: string; }
+    }): Promise<void> {
+        if (Answers.client) {
+            return Answers.client.eventSearch(params);
+        } else {
+            logger.info(() => `No Fabric! eventSearch: ${params}`);
+        }
+    }
+
     static async eventShare(params: {
         method?: string,
         contentName?: string,

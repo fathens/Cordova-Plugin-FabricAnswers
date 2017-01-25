@@ -60,6 +60,11 @@ export interface AnswersClient {
         custom?: { [key: string]: string; }
     }): Promise<void>;
 
+    eventSearch(params: {
+        query?: string,
+        custom?: { [key: string]: string; }
+    }): Promise<void>;
+
     eventShare(params: {
         method?: string,
         contentName?: string,
