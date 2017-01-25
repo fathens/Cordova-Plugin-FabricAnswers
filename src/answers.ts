@@ -2,24 +2,30 @@ import _ from "lodash";
 import { Logger } from "log4ts";
 import { AnswersClient } from "./client";
 
-const plugin = (window as any).plugin;
-
-const logger = new Logger("S3File");
-
-function isDef(typedec) {
-    return !_.isEqual(typedec, 'undefined');
-}
-const hasPlugin = isDef(typeof plugin) && isDef(typeof plugin.Fabric) && isDef(typeof plugin.Fabric.Answers);
-const client: AnswersClient = hasPlugin ? plugin.Fabric.Answers : null;
+const logger = new Logger("Answers");
 
 export class Answers {
+    private static _client: AnswersClient;
+    private static get client(): AnswersClient {
+        function isDef(typedec) {
+            return !_.isEqual(typedec, 'undefined');
+        }
+        if (!Crashlytics._client) {
+            const plugin = (window as any).plugin;
+            if (isDef(typeof plugin) && isDef(typeof plugin.Fabric) && isDef(typeof plugin.Fabric.Answers)) {
+                Crashlytics._client = plugin.Fabric.Answers;
+            }
+        }
+        return Crashlytics._client;
+    }
+
     static async eventLogin(params: {
         method?: string,
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventLogin(params);
+        if (Answers.client) {
+            return Answers.client.eventLogin(params);
         } else {
             logger.info(() => `No Fabric! eventLogin: ${params}`);
         }
@@ -30,8 +36,8 @@ export class Answers {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventSignUp(params);
+        if (Answers.client) {
+            return Answers.client.eventSignUp(params);
         } else {
             logger.info(() => `No Fabric! eventSignUp: ${params}`);
         }
@@ -41,8 +47,8 @@ export class Answers {
         method?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventInvite(params);
+        if (Answers.client) {
+            return Answers.client.eventInvite(params);
         } else {
             logger.info(() => `No Fabric! eventInvite: ${params}`);
         }
@@ -52,8 +58,8 @@ export class Answers {
         levelName?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventLevelStart(params);
+        if (Answers.client) {
+            return Answers.client.eventLevelStart(params);
         } else {
             logger.info(() => `No Fabric! eventLevelStart: ${params}`);
         }
@@ -64,8 +70,8 @@ export class Answers {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventLevelEnd(params);
+        if (Answers.client) {
+            return Answers.client.eventLevelEnd(params);
         } else {
             logger.info(() => `No Fabric! eventLevelEnd: ${params}`);
         }
@@ -80,8 +86,8 @@ export class Answers {
         success?: boolean,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventPurchase(params);
+        if (Answers.client) {
+            return Answers.client.eventPurchase(params);
         } else {
             logger.info(() => `No Fabric! eventPurchase: ${params}`);
         }
@@ -95,8 +101,8 @@ export class Answers {
         itemId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventAddToCart(params);
+        if (Answers.client) {
+            return Answers.client.eventAddToCart(params);
         } else {
             logger.info(() => `No Fabric! eventAddToCart: ${params}`);
         }
@@ -108,8 +114,8 @@ export class Answers {
         itemCount?: number,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventStartCheckout(params);
+        if (Answers.client) {
+            return Answers.client.eventStartCheckout(params);
         } else {
             logger.info(() => `No Fabric! eventStartCheckout: ${params}`);
         }
@@ -121,8 +127,8 @@ export class Answers {
         contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventContentView(params);
+        if (Answers.client) {
+            return Answers.client.eventContentView(params);
         } else {
             logger.info(() => `No Fabric! eventContentView: ${params}`);
         }
@@ -135,8 +141,8 @@ export class Answers {
         contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventShare(params);
+        if (Answers.client) {
+            return Answers.client.eventShare(params);
         } else {
             logger.info(() => `No Fabric! eventShare: ${params}`);
         }
@@ -149,8 +155,8 @@ export class Answers {
         itemType?: string,
         custom?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventRating(params);
+        if (Answers.client) {
+            return Answers.client.eventRating(params);
         } else {
             logger.info(() => `No Fabric! eventRating: ${params}`);
         }
@@ -160,8 +166,8 @@ export class Answers {
         name?: string,
         attributes?: { [key: string]: string; }
     }): Promise<void> {
-        if (client) {
-            return client.eventCustom(params);
+        if (Answers.client) {
+            return Answers.client.eventCustom(params);
         } else {
             logger.info(() => `No Fabric! eventCustom: ${params}`);
         }
