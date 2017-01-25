@@ -34,7 +34,7 @@ public class FabricAnswers : CordovaPlugin() {
         }
     }
 
-    public fun putCustom(event: AnswersEvent<*>, custom: JSONObject) {
+    private fun putCustom(event: AnswersEvent<*>, custom: JSONObject) {
         val iterator = custom.keys()
         while (iterator.hasNext()) {
             val key = iterator.next()
