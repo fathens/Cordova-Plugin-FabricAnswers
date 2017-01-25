@@ -27,7 +27,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventLogin(params);
         } else {
-            logger.info(() => `No Fabric! eventLogin: ${params}`);
+            logger.info(() => `No Fabric! eventLogin: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -39,7 +39,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventSignUp(params);
         } else {
-            logger.info(() => `No Fabric! eventSignUp: ${params}`);
+            logger.info(() => `No Fabric! eventSignUp: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -50,7 +50,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventInvite(params);
         } else {
-            logger.info(() => `No Fabric! eventInvite: ${params}`);
+            logger.info(() => `No Fabric! eventInvite: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -61,7 +61,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventLevelStart(params);
         } else {
-            logger.info(() => `No Fabric! eventLevelStart: ${params}`);
+            logger.info(() => `No Fabric! eventLevelStart: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -73,7 +73,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventLevelEnd(params);
         } else {
-            logger.info(() => `No Fabric! eventLevelEnd: ${params}`);
+            logger.info(() => `No Fabric! eventLevelEnd: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -89,7 +89,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventPurchase(params);
         } else {
-            logger.info(() => `No Fabric! eventPurchase: ${params}`);
+            logger.info(() => `No Fabric! eventPurchase: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -104,7 +104,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventAddToCart(params);
         } else {
-            logger.info(() => `No Fabric! eventAddToCart: ${params}`);
+            logger.info(() => `No Fabric! eventAddToCart: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -117,7 +117,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventStartCheckout(params);
         } else {
-            logger.info(() => `No Fabric! eventStartCheckout: ${params}`);
+            logger.info(() => `No Fabric! eventStartCheckout: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -130,7 +130,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventContentView(params);
         } else {
-            logger.info(() => `No Fabric! eventContentView: ${params}`);
+            logger.info(() => `No Fabric! eventContentView: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -141,7 +141,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventSearch(params);
         } else {
-            logger.info(() => `No Fabric! eventSearch: ${params}`);
+            logger.info(() => `No Fabric! eventSearch: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -155,7 +155,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventShare(params);
         } else {
-            logger.info(() => `No Fabric! eventShare: ${params}`);
+            logger.info(() => `No Fabric! eventShare: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -169,7 +169,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventRating(params);
         } else {
-            logger.info(() => `No Fabric! eventRating: ${params}`);
+            logger.info(() => `No Fabric! eventRating: ${JSON.stringify(params, null, 4)}`);
         }
     }
 
@@ -180,7 +180,7 @@ export class Answers {
         if (Answers.client) {
             return Answers.client.eventCustom(params);
         } else {
-            logger.info(() => `No Fabric! eventCustom: ${params}`);
+            logger.info(() => `No Fabric! eventCustom: ${JSON.stringify(params, null, 4)}`);
         }
     }
 }
