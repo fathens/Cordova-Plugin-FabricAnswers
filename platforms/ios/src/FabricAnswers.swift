@@ -20,13 +20,8 @@ extension Dictionary {
 
 @objc(FabricAnswers)
 class FabricAnswers: CDVPlugin {
-    fileprivate func frame(_ command: CDVInvokedUrlCommand, _ proc: (Dictionary<String, AnyObject>?, Dictionary<String, AnyObject>?) -> Void) {
-        let dict = command.arguments.first.flatMap { $0 as? Dictionary<String, AnyObject> }
-        let custom = dict?["custom"] as? Dictionary<String, AnyObject>
 
-        proc(dict, custom)
-        commandDelegate!.send(CDVPluginResult(status: CDVCommandStatus_OK), callbackId: command.callbackId)
-    }
+    // MARK: - Cordova Commands
 
     @objc(eventPurchase:)
     func eventPurchase(command: CDVInvokedUrlCommand) {
@@ -153,6 +148,26 @@ class FabricAnswers: CDVPlugin {
             let name = dict?.getString("name")
             let attrs = dict?["attributes"] as? Dictionary<String, AnyObject>
             Answers.logCustomEvent(withName: name == nil ? "NoName": name!, customAttributes: attrs)
+        }
+    }
+
+    // MARK: - Private Utillities
+
+    fileprivate func fork(_ proc: @escaping () -> Void) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async(execute: proc)
+    }
+
+    fileprivate func frame(_ command: CDVInvokedUrlCommand, _ proc: @escaping (Dictionary<String, AnyObject>?, Dictionary<String, AnyObject>?) throws -> Void) {
+        fork {
+            do {
+                let dict = command.arguments.first.flatMap { $0 as? Dictionary<String, AnyObject> }
+                let custom = dict?["custom"] as? Dictionary<String, AnyObject>
+
+                try proc(dict, custom)
+                self.commandDelegate!.send(CDVPluginResult(status: CDVCommandStatus_OK), callbackId: command.callbackId)
+            } catch (let ex) {
+                self.commandDelegate!.send(CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: ex.localizedDescription), callbackId: command.callbackId)
+            }
         }
     }
 }
