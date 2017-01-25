@@ -28,7 +28,8 @@ class FabricAnswers: CDVPlugin {
         commandDelegate!.send(CDVPluginResult(status: CDVCommandStatus_OK), callbackId: command.callbackId)
     }
 
-    func eventPurchase(_ command: CDVInvokedUrlCommand) {
+    @objc(eventPurchase:)
+    func eventPurchase(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let price = dict?.getDecimal("itemPrice")
             let currency = dict?.getString("currency")
@@ -40,7 +41,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventAddToCart(_ command: CDVInvokedUrlCommand) {
+    @objc(eventAddToCart:)
+    func eventAddToCart(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let price = dict?.getDecimal("itemPrice")
             let currency = dict?.getString("currency")
@@ -51,7 +53,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventStartCheckout(_ command: CDVInvokedUrlCommand) {
+    @objc(eventStartCheckout:)
+    func eventStartCheckout(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let price = dict?.getDecimal("totalPrice")
             let currency = dict?.getString("currency")
@@ -60,7 +63,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventContentView(_ command: CDVInvokedUrlCommand) {
+    @objc(eventContentView:)
+    func eventContentView(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("contentName")
             let type = dict?.getString("contentType")
@@ -69,14 +73,16 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventSearch(_ command: CDVInvokedUrlCommand) {
+    @objc(eventSearch:)
+    func eventSearch(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let query = dict?.getString("query")
             Answers.logSearch(withQuery: query, customAttributes: custom)
         }
     }
 
-    func eventShare(_ command: CDVInvokedUrlCommand) {
+    @objc(eventShare:)
+    func eventShare(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
             let name = dict?.getString("contentName")
@@ -86,7 +92,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventRating(_ command: CDVInvokedUrlCommand) {
+    @objc(eventRating:)
+    func eventRating(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let rating = dict?.getDouble("rating")
             let name = dict?.getString("contentName")
@@ -96,7 +103,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventSignUp(_ command: CDVInvokedUrlCommand) {
+    @objc(eventSignUp:)
+    func eventSignUp(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
             let success = dict?.getBool("success")
@@ -104,7 +112,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventLogin(_ command: CDVInvokedUrlCommand) {
+    @objc(eventLogin:)
+    func eventLogin(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
             let success = dict?.getBool("success")
@@ -112,21 +121,24 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventInvite(_ command: CDVInvokedUrlCommand) {
+    @objc(eventInvite:)
+    func eventInvite(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let method = dict?.getString("method")
             Answers.logInvite(withMethod: method, customAttributes: custom)
         }
     }
 
-    func eventLevelStart(_ command: CDVInvokedUrlCommand) {
+    @objc(eventLevelStart:)
+    func eventLevelStart(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("levelName")
             Answers.logLevelStart(name, customAttributes: custom)
         }
     }
 
-    func eventLevelEnd(_ command: CDVInvokedUrlCommand) {
+    @objc(eventLevelEnd:)
+    func eventLevelEnd(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("levelName")
             let score = dict?.getDouble("score")
@@ -135,7 +147,8 @@ class FabricAnswers: CDVPlugin {
         }
     }
 
-    func eventCustom(_ command: CDVInvokedUrlCommand) {
+    @objc(eventCustom:)
+    func eventCustom(command: CDVInvokedUrlCommand) {
         frame(command) { dict, custom in
             let name = dict?.getString("name")
             let attrs = dict?["attributes"] as? Dictionary<String, AnyObject>
