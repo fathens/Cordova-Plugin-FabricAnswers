@@ -16,7 +16,7 @@ class ParamDict(val obj: JSONObject) {
     fun getBoolean(name: String): Boolean? = opt(name) as? Boolean
     fun getNumber(name: String): Number? = opt(name) as? Number
     fun getDecimal(name: String): BigDecimal? = getNumber(name)?.let { BigDecimal(it.toDouble()) }
-    fun getCurrency(name: String): Currency? = getString(name)?.let { Currency.getInstance(it)}
+    fun getCurrency(name: String): Currency? = getString(name)?.let { try { Currency.getInstance(it) } catch (ex: IllegalArgumentException) { null } }
 }
 
 public class FabricAnswers : CordovaPlugin() {
