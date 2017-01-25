@@ -10,13 +10,13 @@ export class Answers {
         function isDef(typedec) {
             return !_.isEqual(typedec, 'undefined');
         }
-        if (!Crashlytics._client) {
+        if (!Answers._client) {
             const plugin = (window as any).plugin;
             if (isDef(typeof plugin) && isDef(typeof plugin.Fabric) && isDef(typeof plugin.Fabric.Answers)) {
-                Crashlytics._client = plugin.Fabric.Answers;
+                Answers._client = plugin.Fabric.Answers;
             }
         }
-        return Crashlytics._client;
+        return Answers._client;
     }
 
     static async eventLogin(params: {
