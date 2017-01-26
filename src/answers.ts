@@ -67,6 +67,7 @@ export class Answers {
 
     static async eventLevelEnd(params: {
         levelName?: string,
+        score?: number,
         success?: boolean,
         attributes?: CustomAttributes
     }): Promise<void> {
@@ -163,7 +164,7 @@ export class Answers {
         rating?: number,
         contentName?: string,
         contentType?: string,
-        itemType?: string,
+        contentId?: string,
         attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
