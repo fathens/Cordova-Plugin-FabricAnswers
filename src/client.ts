@@ -2,30 +2,30 @@ export interface AnswersClient {
     eventLogin(params: {
         method?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventSignUp(params: {
         method?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventInvite(params: {
         method?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventLevelStart(params: {
         levelName?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
         score?: number,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventPurchase(params: {
@@ -35,7 +35,7 @@ export interface AnswersClient {
         itemType?: string,
         itemId?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventAddToCart(params: {
@@ -44,26 +44,26 @@ export interface AnswersClient {
         itemName?: string,
         itemType?: string,
         itemId?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventStartCheckout(params: {
         totalPrice?: number,
         currency?: Currency,
         itemCount?: number,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventContentView(params: {
         contentName?: string,
         contentType?: string,
         contentId?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventSearch(params: {
         query?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventShare(params: {
@@ -71,7 +71,7 @@ export interface AnswersClient {
         contentName?: string,
         contentType?: string,
         contentId?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventRating(params: {
@@ -79,13 +79,17 @@ export interface AnswersClient {
         contentName?: string,
         contentType?: string,
         contentId?: string,
-        custom?: { [key: string]: string; }
+        custom?: CustomAttributes
     }): Promise<void>;
 
     eventCustom(params: {
         name?: string,
-        attributes?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void>;
+}
+
+export type CustomAttributes = {
+    [key: string]: string | number;
 }
 
 export type Currency =
