@@ -83,7 +83,7 @@ export interface AnswersClient {
     }): Promise<void>;
 
     eventCustom(params: {
-        name?: string,
+        name: string,
         attributes?: CustomAttributes
     }): Promise<void>;
 }

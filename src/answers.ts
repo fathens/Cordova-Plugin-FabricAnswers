@@ -174,7 +174,7 @@ export class Answers {
     }
 
     static async eventCustom(params: {
-        name?: string,
+        name: string,
         attributes?: { [key: string]: string; }
     }): Promise<void> {
         if (Answers.client) {
