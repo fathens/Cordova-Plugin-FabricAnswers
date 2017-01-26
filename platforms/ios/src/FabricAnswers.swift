@@ -145,8 +145,9 @@ class FabricAnswers: CDVPlugin {
     @objc(eventCustom:)
     func eventCustom(command: CDVInvokedUrlCommand) {
         frame(command) { dict, attributes in
-            let name = dict?.getString("name")
-            Answers.logCustomEvent(withName: name == nil ? "NoName": name!, customAttributes: attributes)
+            if let name = dict?.getString("name") {
+                Answers.logCustomEvent(withName: name, customAttributes: attributes)
+            }
         }
     }
 

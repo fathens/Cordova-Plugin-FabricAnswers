@@ -229,12 +229,15 @@ public class FabricAnswers : CordovaPlugin() {
     public fun eventCustom(args: JSONArray): (() -> Unit) {
         val obj = if (args.length() > 0) args.getJSONObject(0) else null
         return {
-            val event = CustomEvent(obj?.let { ParamDict(it) }?.getString("name") ?: "NoName")
             if (obj != null) {
                 val dict = ParamDict(obj)
-                dict.getJSONObject("attributes")?.let { putAttributes(event, it) }
+                val name = dict.getString("name")
+                if (name != null) {
+                    val event = CustomEvent(name)
+                    dict.getJSONObject("attributes")?.let { putAttributes(event, it) }
+                    Answers.getInstance().logCustom(event)
+                }
             }
-            Answers.getInstance().logCustom(event)
         }
     }
 }
