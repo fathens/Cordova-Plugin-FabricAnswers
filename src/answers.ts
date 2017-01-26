@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Logger } from "log4ts";
-import { AnswersClient, Currency } from "./client";
+import { AnswersClient, CustomAttributes, Currency } from "./client";
 
 const logger = new Logger("Answers");
 
@@ -22,7 +22,7 @@ export class Answers {
     static async eventLogin(params: {
         method?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventLogin(params);
@@ -34,7 +34,7 @@ export class Answers {
     static async eventSignUp(params: {
         method?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventSignUp(params);
@@ -45,7 +45,7 @@ export class Answers {
 
     static async eventInvite(params: {
         method?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventInvite(params);
@@ -56,7 +56,7 @@ export class Answers {
 
     static async eventLevelStart(params: {
         levelName?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventLevelStart(params);
@@ -68,7 +68,7 @@ export class Answers {
     static async eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventLevelEnd(params);
@@ -84,7 +84,7 @@ export class Answers {
         itemType?: string,
         itemId?: string,
         success?: boolean,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventPurchase(params);
@@ -99,7 +99,7 @@ export class Answers {
         itemName?: string,
         itemType?: string,
         itemId?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventAddToCart(params);
@@ -112,7 +112,7 @@ export class Answers {
         totalPrice?: number,
         currency?: Currency,
         itemCount?: number,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventStartCheckout(params);
@@ -125,7 +125,7 @@ export class Answers {
         contentName?: string,
         contentType?: string,
         contentId?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventContentView(params);
@@ -136,7 +136,7 @@ export class Answers {
 
     static async eventSearch(params: {
         query?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventSearch(params);
@@ -150,7 +150,7 @@ export class Answers {
         contentName?: string,
         contentType?: string,
         contentId?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventShare(params);
@@ -164,7 +164,7 @@ export class Answers {
         contentName?: string,
         contentType?: string,
         itemType?: string,
-        custom?: { [key: string]: string; }
+        attributes?: CustomAttributes
     }): Promise<void> {
         if (Answers.client) {
             return Answers.client.eventRating(params);
