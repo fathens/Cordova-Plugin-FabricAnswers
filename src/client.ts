@@ -77,7 +77,7 @@ export interface AnswersClient {
         rating?: number,
         contentName?: string,
         contentType?: string,
-        itemType?: string,
+        contentId?: string,
         custom?: { [key: string]: string; }
     }): Promise<void>;
 
