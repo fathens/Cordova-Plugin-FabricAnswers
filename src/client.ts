@@ -24,6 +24,7 @@ export interface AnswersClient {
     eventLevelEnd(params: {
         levelName?: string,
         success?: boolean,
+        score?: number,
         custom?: { [key: string]: string; }
     }): Promise<void>;
 
