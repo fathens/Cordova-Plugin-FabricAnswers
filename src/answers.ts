@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Logger } from "log4ts";
-import { AnswersClient } from "./client";
+import { AnswersClient, Currency } from "./client";
 
 const logger = new Logger("Answers");
 
@@ -79,7 +79,7 @@ export class Answers {
 
     static async eventPurchase(params: {
         itemPrice?: number,
-        currency?: string,
+        currency?: Currency,
         itemName?: string,
         itemType?: string,
         itemId?: string,
@@ -95,7 +95,7 @@ export class Answers {
 
     static async eventAddToCart(params: {
         itemPrice?: number,
-        currency?: string,
+        currency?: Currency,
         itemName?: string,
         itemType?: string,
         itemId?: string,
@@ -110,7 +110,7 @@ export class Answers {
 
     static async eventStartCheckout(params: {
         totalPrice?: number,
-        currency?: string,
+        currency?: Currency,
         itemCount?: number,
         custom?: { [key: string]: string; }
     }): Promise<void> {
